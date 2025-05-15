@@ -79,7 +79,7 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      <h1 className="title">Genshin Impact Profile Searcher</h1>
+      <h1 className="title">Chercher un profil Genshin Impact</h1>
       <div className="search-container">
         <div className="search-bar">
           <input
