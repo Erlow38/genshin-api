@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
-  "homepage": "https://ethan-ehrler.fr/taverne-de-jade",
+  "homepage": "https://ethan-ehrler.fr/genshin-api",
   "private": true,
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
