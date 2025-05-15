@@ -1,0 +1,110 @@
+.player-info-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  color: white;
+  
+  .error-message {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    margin: 20px 0;
+  }
+
+  .player-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
+
+    .player-avatar {
+      position: relative;
+      width: 100px;
+      text-align: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .character-name {
+        display: block;
+        margin-top: 8px;
+        font-size: 14px;
+        color: #fff;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .player-details {
+      h2 {
+        margin: 0;
+        color: #fff;
+        font-size: 24px;
+      }
+
+      .signature {
+        margin: 5px 0 0;
+        color: #ccc;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .player-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+
+    .stat-item {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 15px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .stat-label {
+        color: #ccc;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .stat-value {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.player-info-container {
+  animation: fadeIn 0.5s ease-out forwards;
+}
