@@ -9,19 +9,23 @@ const WeaponsPage = () => <div>Page des armes</div>;
 const ArtifactsPage = () => <div>Page des artéfacts</div>;
 const ElementsPage = () => <div>Page des éléments</div>;
 
+/*
+  <Routes>
+    <Route path="/" element={<HomePage />} />
+    <Route path="/characters" element={<CharactersPage />} />
+    <Route path="/weapons" element={<WeaponsPage />} />
+    <Route path="/artifacts" element={<ArtifactsPage />} />
+    <Route path="/elements" element={<ElementsPage />} />
+  </Routes>
+*/
+
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Navbar />
         <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/characters" element={<CharactersPage />} />
-            <Route path="/weapons" element={<WeaponsPage />} />
-            <Route path="/artifacts" element={<ArtifactsPage />} />
-            <Route path="/elements" element={<ElementsPage />} />
-          </Routes>
+          <HomePage />
         </main>
       </div>
     </BrowserRouter>
