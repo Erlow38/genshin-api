@@ -74,4 +74,14 @@
     color: #fff;
     font-size: 24px;
   }
+
+  .no-data-message {
+    text-align: center;
+    padding: 20px;
+    color: #ccc;
+    font-style: italic;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    grid-column: 1 / -1;
+  }
 } 

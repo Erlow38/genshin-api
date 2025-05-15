@@ -113,40 +113,48 @@ const CharacterList: React.FC<CharacterListProps> = ({ characters, nameCards }) 
     <div className="character-list-container">
       <h3>Personnages</h3>
       <div className="characters-grid">
-        {characters.map((character) => (
-          <div key={character.avatarId} className="character-card">
-            <img
-              src={characterIcons[character.avatarId] || buildIconUrl('UI_AvatarIcon_Side_PlayerGirl')}
-              alt={characterNames[character.avatarId] || `Character ${character.avatarId}`}
-              className="character-avatar"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = buildIconUrl('UI_AvatarIcon_Side_PlayerGirl');
-              }}
-            />
-            <div className="character-info">
-              <span className="character-name">{characterNames[character.avatarId] || '...'}</span>
-              <span className="character-level">Nv. {character.level}</span>
+        {characters?.length > 0 ? (
+          characters.map((character) => (
+            <div key={character.avatarId} className="character-card">
+              <img
+                src={characterIcons[character.avatarId] || buildIconUrl('UI_AvatarIcon_Side_PlayerGirl')}
+                alt={characterNames[character.avatarId] || `Character ${character.avatarId}`}
+                className="character-avatar"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = buildIconUrl('UI_AvatarIcon_Side_PlayerGirl');
+                }}
+              />
+              <div className="character-info">
+                <span className="character-name">{characterNames[character.avatarId] || '...'}</span>
+                <span className="character-level">Nv. {character.level}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <div className="no-data-message">Aucun personnage à afficher</div>
+        )}
       </div>
 
       <h3>Thèmes</h3>
       <div className="namecards-grid">
-        {nameCards.map((cardId) => (
-          <div key={cardId} className="namecard">
-            <img
-              src={buildIconUrl(namecardIcons[cardId])}
-              alt={`Namecard ${cardId}`}
-              className="namecard-image"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = buildIconUrl('UI_NameCardPic_0_P');
-              }}
-            />
-          </div>
-        ))}
+        {nameCards?.length > 0 ? (
+          nameCards.map((cardId) => (
+            <div key={cardId} className="namecard">
+              <img
+                src={buildIconUrl(namecardIcons[cardId])}
+                alt={`Namecard ${cardId}`}
+                className="namecard-image"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = buildIconUrl('UI_NameCardPic_0_P');
+                }}
+              />
+            </div>
+          ))
+        ) : (
+          <div className="no-data-message">Aucun thème à afficher</div>
+        )}
       </div>
     </div>
   );

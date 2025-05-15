@@ -39,6 +39,12 @@ const HomePage = () => {
       return;
     }
 
+    // Vérification que l'UID contient exactement 9 chiffres
+    if (!/^\d{9}$/.test(uid)) {
+      setError("L'UID doit contenir exactement 9 chiffres");
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await axios.get<EnkaResponse>(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://enka.network/api/uid/${uid}/`)}`, {
@@ -55,6 +61,19 @@ const HomePage = () => {
         throw new Error('No data received');
       }
 
+      // Vérifier si les données essentielles sont présentes
+      if (!response.data.playerInfo) {
+        throw new Error('Profil non trouvé ou privé');
+      }
+
+      // S'assurer que les listes sont initialisées
+      if (!Array.isArray(response.data.playerInfo.showAvatarInfoList)) {
+        response.data.playerInfo.showAvatarInfoList = [];
+      }
+      if (!Array.isArray(response.data.playerInfo.showNameCardIdList)) {
+        response.data.playerInfo.showNameCardIdList = [];
+      }
+
       setPlayerData(response.data);
       setError('');
     } catch (err) {
@@ -66,6 +85,8 @@ const HomePage = () => {
           setError('UID non trouvé. Vérifiez le numéro et réessayez.');
         } else if (err.response?.status === 429) {
           setError('Trop de requêtes. Veuillez attendre quelques minutes.');
+        } else if (err.message === 'Profil non trouvé ou privé') {
+          setError('Profil non trouvé ou privé. Vérifiez que le profil est public dans les paramètres du jeu.');
         } else {
           setError(`Erreur lors de la récupération des données (${err.response?.status || 'inconnue'}). Veuillez réessayer.`);
         }
