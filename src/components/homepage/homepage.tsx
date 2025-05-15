@@ -109,6 +109,11 @@ const HomePage = () => {
             placeholder="Enter Genshin Impact UID..."
             value={uid}
             onChange={(e) => setUid(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                handleSearch();
+              }
+            }}
           />
           <button 
             className="search-button" 
