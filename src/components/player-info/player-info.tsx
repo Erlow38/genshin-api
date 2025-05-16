@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './player-info.scss';
 import CharacterList from '../character-list/character-list.tsx';
+import { getNamecardIcon } from '../../utils/character-icons.ts';
 
 interface ProfilePicture {
   iconPath: string;
@@ -40,7 +41,21 @@ interface PlayerInfoProps {
 
 const PlayerInfo: React.FC<PlayerInfoProps> = ({ data }) => {
   const { playerInfo } = data;
+  const [namecardUrl, setNamecardUrl] = useState<string>('');
   const [iconPath, setIconPath] = useState<string>('UI_AvatarIcon_PlayerGirl_Circle');
+
+  useEffect(() => {
+    const loadNamecard = async () => {
+      try {
+        const url = await getNamecardIcon(playerInfo.nameCardId);
+        setNamecardUrl(url);
+      } catch (error) {
+        console.error('Error loading namecard:', error);
+      }
+    };
+
+    loadNamecard();
+  }, [playerInfo.nameCardId]);
 
   useEffect(() => {
     const loadProfilePicture = async () => {
@@ -70,19 +85,30 @@ const PlayerInfo: React.FC<PlayerInfoProps> = ({ data }) => {
   return (
     <div className="player-info-container">
       <div className="player-header">
-        <div className="player-avatar">
+        <div className="player-namecard">
           <img 
-            src={`https://enka.network/ui/${iconPath}.png`}
-            alt="Profile"
+            src={namecardUrl}
+            alt="Player Namecard"
+            className="namecard-background"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = 'https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_PlayerGirl.png';
+              target.src = 'https://enka.network/ui/UI_NameCardPic_0_P.png';
             }}
           />
-        </div>
-        <div className="player-details">
-          <h2>{playerInfo.nickname}</h2>
-          <p className="signature">{playerInfo.signature || "Pas de signature"}</p>
+          <div className="player-avatar">
+            <img 
+              src={`https://enka.network/ui/${iconPath}.png`}
+              alt="Profile"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = 'https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_PlayerGirl.png';
+              }}
+            />
+          </div>
+          <div className="player-details">
+            <h2>{playerInfo.nickname}</h2>
+            <p className="signature">{playerInfo.signature || "Pas de signature"}</p>
+          </div>
         </div>
       </div>
       

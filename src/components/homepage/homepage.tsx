@@ -34,20 +34,21 @@ const HomePage = () => {
   const [playerData, setPlayerData] = useState<EnkaResponse | null>(null);
 
   const handleSearch = async () => {
-    if (!uid) {
+    const cleanUid = uid.replace(/\s/g, '');
+    if (!cleanUid) {
       setError('Please enter a UID');
       return;
     }
 
     // Vérification que l'UID contient exactement 9 chiffres
-    if (!/^\d{9}$/.test(uid)) {
+    if (!/^\d{9}$/.test(cleanUid)) {
       setError("L'UID doit contenir exactement 9 chiffres");
       return;
     }
 
     setLoading(true);
     try {
-      const response = await axios.get<EnkaResponse>(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://enka.network/api/uid/${uid}/`)}`, {
+      const response = await axios.get<EnkaResponse>(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://enka.network/api/uid/${cleanUid}/`)}`, {
         timeout: 30000,
         headers: {
           'Accept': 'application/json',
@@ -98,6 +99,11 @@ const HomePage = () => {
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\s/g, ''); // Enlève tous les espaces
+    setUid(value);
+  };
+
   return (
     <div className="homepage-container">
       <h1 className="title">Chercher un profil Genshin Impact</h1>
@@ -108,7 +114,7 @@ const HomePage = () => {
             type="text"
             placeholder="Enter Genshin Impact UID..."
             value={uid}
-            onChange={(e) => setUid(e.target.value)}
+            onChange={handleInputChange}
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
                 handleSearch();

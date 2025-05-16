@@ -235,7 +235,7 @@ function extractNameFromIconName(iconName: string): string {
 
 export async function getNamecardIcon(namecardId: number): Promise<string> {
   try {
-    const formattedId = `210${String(namecardId).padStart(3, '0')}`;
+    const formattedId = String(namecardId);
     const response = await fetch('https://raw.githubusercontent.com/EnkaNetwork/API-docs/master/store/namecards.json');
     if (!response.ok) {
       throw new Error('Failed to fetch namecard data');
