@@ -7,6 +7,11 @@
   font-style: normal;
 }
 
+// Variables pour les breakpoints
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+
 .homepage-container {
   min-height: 100vh;
   display: flex;
@@ -15,11 +20,17 @@
   justify-content: center;
   position: relative;
   font-family: 'GenshinFont', sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: $mobile) {
+    padding: 60px 16px 16px;
+  }
 
   &::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -28,14 +39,17 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    // filter: brightness(0.6);
     animation: backgroundPulse 20s ease-in-out infinite;
     z-index: -2;
+
+    @media (max-width: $mobile) {
+      background-attachment: scroll;
+    }
   }
 
   &::after {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -78,6 +92,11 @@
   width: 100%;
   max-width: 600px;
   padding: 2rem;
+  box-sizing: border-box;
+
+  @media (max-width: $mobile) {
+    padding: 1rem;
+  }
 }
 
 .search-bar {
@@ -90,22 +109,18 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
-  animation: elementalGlow 3s ease-in-out infinite;
-  transition: all 0.4s ease;
+  gap: 0.5rem;
+  box-sizing: border-box;
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-  }
-
-  &:focus-within {
-    animation: elementalGlow 2s ease-in-out infinite;
+  @media (max-width: $mobile) {
+    padding: 0.5rem;
+    border-radius: 12px;
   }
 }
 
 .search-input {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   padding: 1rem 1.5rem;
   border: none;
   background: transparent;
@@ -114,6 +129,12 @@
   font-weight: 400;
   outline: none;
   font-family: 'GenshinFont', sans-serif;
+  box-sizing: border-box;
+
+  @media (max-width: $mobile) {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
@@ -122,12 +143,12 @@
 }
 
 .search-button {
+  flex-shrink: 0;
   background: rgba(255, 255, 255, 0.15);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0.8rem 2rem;
   border-radius: 12px;
-  margin-right: 0.5rem;
   cursor: pointer;
   font-weight: 400;
   font-family: 'GenshinFont', sans-serif;
@@ -138,7 +159,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 120px;
+  white-space: nowrap;
+
+  @media (max-width: $mobile) {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
 
   &::before {
     content: '';
@@ -180,8 +206,21 @@
   letter-spacing: -0.5px;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   font-family: 'GenshinFont', sans-serif;
-  // animation: floatingElement 8s ease-in-out infinite;
   position: relative;
+  padding: 0 1rem;
+  box-sizing: border-box;
+
+  @media (max-width: $tablet) {
+    font-size: 2rem;
+    margin-top: 6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (max-width: $mobile) {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
 
   &::after {
     content: '';
@@ -211,4 +250,12 @@
   font-family: 'GenshinFont', sans-serif;
   backdrop-filter: blur(10px);
   animation: elementalGlow 4s ease-in-out infinite;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: $mobile) {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
 }
