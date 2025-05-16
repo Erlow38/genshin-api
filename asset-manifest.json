@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/genshin-api/static/css/main.46968f1e.css",
+    "main.css": "/genshin-api/static/css/main.023d79a1.css",
     "main.js": "/genshin-api/static/js/main.c1cbc520.js",
     "static/media/zh-cn.ttf": "/genshin-api/static/media/zh-cn.54a8212866e6ec1b1003.ttf",
     "static/media/bg.jpg": "/genshin-api/static/media/bg.9a46212be49181a171ed.jpg",
     "static/media/logo.png": "/genshin-api/static/media/logo.c335342bcfcc49efceb9.png",
     "index.html": "/genshin-api/index.html",
-    "main.46968f1e.css.map": "/genshin-api/static/css/main.46968f1e.css.map",
+    "main.023d79a1.css.map": "/genshin-api/static/css/main.023d79a1.css.map",
     "main.c1cbc520.js.map": "/genshin-api/static/js/main.c1cbc520.js.map"
   },
   "entrypoints": [
-    "static/css/main.46968f1e.css",
+    "static/css/main.023d79a1.css",
     "static/js/main.c1cbc520.js"
   ]
 }
